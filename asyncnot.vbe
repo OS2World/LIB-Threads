@@ -1,0 +1,14 @@
+//VBBeginPartInfo: IAsyncNotifier,"Enables async notification - primarily for parts that are internally multi-threaded"
+//VBParent: IStandardNotifier
+//VBIncludes: "iasyntfy.hpp" _IASYNTFY_
+//VBLibFile: asyncnot.lib
+//VBPartDataFile: VBComm.vbb
+//VBConstructor: IAsyncNotifier()
+//VBComposerInfo: nonvisual
+//VBEvent: ready,"ready", readyId
+//VBAction: run,"Processes all messages and notifications for notifiers created on this dispatch thread",void,static void IAsyncNotifier::run()
+//VBAction: deleteThis,"Asynchronously delete the object",IAsyncNotifier&,IAsyncNotifier& IAsyncNotifier::deleteThis()
+//VBAttribute: dispatchThread,"The thread on which the async notifier was created and all notifications will be dispatched",IThreadId,const IThreadId& dispatchThread() const,,dispatchThreadId
+//VBAttribute: *this,"Obtains a reference to the object",IAsyncNotifier&,IAsyncNotifier& thisRef(),,thisRefId
+//VBPreferredFeatures: *this, deleteThis, enabledForNotification, run, this
+//VBEndPartInfo: IAsyncNotifier

@@ -1,0 +1,87 @@
+
+
+// Feature source code generation begins here...
+INotificationId Counter::startNumberId = "Counter::startNumber";
+INotificationId Counter::endNumberId = "Counter::endNumber";
+INotificationId Counter::currentNumberId = "Counter::currentNumber";
+
+unsigned long Counter::startNumber() const
+{
+  return iStartNumber;
+}
+
+Counter& Counter::setStartNumber(unsigned long aStartNumber)
+{
+  if (!(iStartNumber == aStartNumber))
+  {
+    iStartNumber = aStartNumber;
+    notifyObservers(INotificationEvent(Counter::startNumberId, *this));
+  } // endif
+  return *this;
+}
+
+unsigned long Counter::endNumber() const
+{
+  return iEndNumber;
+}
+
+Counter& Counter::setEndNumber(unsigned long aEndNumber)
+{
+  if (!(iEndNumber == aEndNumber))
+  {
+    iEndNumber = aEndNumber;
+    notifyObservers(INotificationEvent(Counter::endNumberId, *this));
+  } // endif
+  return *this;
+}
+
+unsigned long Counter::currentNumber() const
+{
+  return iCurrentNumber;
+}
+
+Counter& Counter::setCurrentNumber(unsigned long aCurrentNumber)
+{
+  if (!(iCurrentNumber == aCurrentNumber))
+  {
+    iCurrentNumber = aCurrentNumber;
+    notifyObservers(INotificationEvent(Counter::currentNumberId, *this));
+  } // endif
+  return *this;
+}
+
+void Counter::startCounting()
+{
+  iThread =
+    new IThread(new IThreadMemberFn<Counter>(*this, Counter::runThread), true);
+}
+
+void Counter::runThread()
+{
+  for (setCurrentNumber(startNumber());
+       true;   // loop forever
+       setCurrentNumber(currentNumber() + 1) )
+    {
+    IThread::current().sleep(1000);
+    if (currentNumber() >= endNumber())
+      setCurrentNumber(startNumber());
+    }
+}
+
+void Counter::reset()
+{
+  setCurrentNumber(startNumber());
+}
+
+void Counter::initialize()
+{
+  iThread = 0;
+}
+
+void Counter::terminate()
+{
+   if (iThread)
+      iThread->stop();
+}
+// Feature source code generation ends here.
+

@@ -1,0 +1,28 @@
+
+
+// Feature source code generation begins here...
+public:
+  virtual unsigned long startNumber() const;
+  virtual Counter& setStartNumber(unsigned long aStartNumber);
+  virtual unsigned long endNumber() const;
+  virtual Counter& setEndNumber(unsigned long aEndNumber);
+  virtual unsigned long currentNumber() const;
+  virtual Counter& setCurrentNumber(unsigned long aCurrentNumber);
+  void startCounting();
+  void runThread();
+  void terminate();
+  void initialize();
+  virtual void reset();
+
+  static INotificationId startNumberId;
+  static INotificationId endNumberId;
+  static INotificationId currentNumberId;
+
+private:
+  unsigned long iStartNumber;
+  unsigned long iEndNumber;
+  unsigned long iCurrentNumber;
+  IThread *      iThread;
+
+// Feature source code generation ends here.
+

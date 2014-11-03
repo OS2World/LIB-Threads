@@ -1,0 +1,11 @@
+
+;----------------------------------------------
+; asyncnot.def - Basic DEF file for a C++ DLL
+;----------------------------------------------
+
+LIBRARY asyncnot INITINSTANCE TERMINSTANCE
+PROTMODE
+DATA MULTIPLE NONSHARED READWRITE LOADONCALL
+CODE LOADONCALL
+EXPORTS 
+

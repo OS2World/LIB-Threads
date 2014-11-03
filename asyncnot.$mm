@@ -1,0 +1,60 @@
+:TARGET.SUFFIXES
+:DEPENDENCY..LIB .cpp .dll .obj 
+:TARGET.all
+:DEPENDENCY.
+e:\avalon\client\asyncnot\asyncnot.LIB
+:RULE..cpp.obj
+:ACTION.Compile::C++ Compiler
+:COMMAND.
+icc.exe /DSTATIC_LINK /DIC_TRACE_DEVELOP /Ti /Gm /Gd /Ge- /Fo"%|dpfF.obj" /C %s
+:RULE..dll.LIB
+:ACTION.Lib::Import Lib
+:COMMAND.
+implib.exe %|dpfF.LIB %s
+:TARGET.e:\avalon\client\asyncnot\asyncnot.dll
+:DEPENDENCY.
+e:\avalon\client\asyncnot\iasynthr.obj
+e:\avalon\client\asyncnot\ievntsem.obj
+e:\avalon\client\asyncnot\asyncnot.obj
+e:\avalon\client\asyncnot\iasynbkg.obj
+e:\avalon\client\asyncnot\iasyngui.obj
+e:\avalon\client\asyncnot\iasyntfy.obj
+e:\avalon\client\asyncnot\asyncnot.def
+:ACTION.Link::Linker
+:COMMAND.
+icc.exe @<<
+/DSTATIC_LINK
+ /Tdp 
+ /Gm /Gd /Ge- 
+ /B" /de /noe"
+ /Fee:\avalon\client\asyncnot\asyncnot.dll 
+ e:\avalon\client\asyncnot\asyncnot.def
+ e:\avalon\client\asyncnot\iasynthr.obj
+ e:\avalon\client\asyncnot\ievntsem.obj
+ e:\avalon\client\asyncnot\asyncnot.obj
+ e:\avalon\client\asyncnot\iasynbkg.obj
+ e:\avalon\client\asyncnot\iasyngui.obj
+ e:\avalon\client\asyncnot\iasyntfy.obj
+<<
+:TARGET.e:\avalon\client\asyncnot\iasynthr.obj
+:DEPENDENCY.
+e:\avalon\client\asyncnot\iasynthr.cpp
+:TARGET.e:\avalon\client\asyncnot\iasyntfy.obj
+:DEPENDENCY.
+e:\avalon\client\asyncnot\iasyntfy.cpp
+:TARGET.e:\avalon\client\asyncnot\iasyngui.obj
+:DEPENDENCY.
+e:\avalon\client\asyncnot\iasyngui.cpp
+:TARGET.e:\avalon\client\asyncnot\iasynbkg.obj
+:DEPENDENCY.
+e:\avalon\client\asyncnot\iasynbkg.cpp
+:TARGET.e:\avalon\client\asyncnot\asyncnot.obj
+:DEPENDENCY.
+e:\avalon\client\asyncnot\asyncnot.CPP
+{e:\avalon\client\asyncnot;$(INCLUDE);}asyncnot.hpp
+:TARGET.e:\avalon\client\asyncnot\ievntsem.obj
+:DEPENDENCY.
+e:\avalon\client\asyncnot\ievntsem.cpp
+:TARGET.e:\avalon\client\asyncnot\asyncnot.LIB
+:DEPENDENCY.
+e:\avalon\client\asyncnot\asyncnot.dll
